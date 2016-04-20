@@ -10,17 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+
 Route::group(['middleware' => ['web']], function(){
 
 	Route::get('/', function () {
    		return view('welcome');
-	});
+	})->name('home');
 
 	Route::post('/signup', [ 'as' => 'signup', 'uses' => 'UserController@postSignUp']);
 
 	Route::post('/signin', [ 'as' => 'signin', 'uses' => 'UserController@postSignIn']);
 
-	Route::get('/dashboard', [ 'as' => 'dashboard', 'uses' => 'UserController@getDashboard']);
+	Route::get('/dashboard', [ 'as' => 'dashboard', 'uses' => 'UserController@getDashboard', 'middleware' => 'auth']);
 
 });
 
