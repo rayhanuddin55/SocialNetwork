@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class user extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
+
+    public function posts(){
+
+    	return $this->hasMany('App\Post');
+    }
 }
